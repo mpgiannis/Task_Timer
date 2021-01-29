@@ -1,0 +1,47 @@
+<!-- <h2>Welcome</h2>
+<button type="button" ng-click="addTask()" class="btn btn-success btn-xs">Add Task <span class="glyphicon glyphicon-plus"></span></button>
+<p><button type="button" ng-click="go()">Ready!</button></p> -->
+<!-- <p><a href="#!/tasks"><button>Ready!</button></a></p> -->
+<div class="wrapper">
+    <div class="container">
+      <h1>Welcome</h1>
+      
+      <form class="form">
+        <input type="text" ng-click="addForm(0)" placeholder="Username">
+        <input type="password" placeholder="Password">
+        <button type="submit" ng-click="go()" id="login-button">Ready</button>
+      </form>
+    </div>
+
+    <div ng-repeat="form in displayedForms track by $index">
+        <ng-include src="form"></ng-include>
+    </div>
+      
+    <script type="text/ng-template" id="newRackForm">
+        <label >
+          <md-input-container><label>Enter Rack description here</label><input type="text" ng-model="racksDescription[$index]" > </md-input-container><button ng-click="Delete($index)" class="btn btn-danger">
+            <i class="glyphicon glyphicon-trash"></i></button>
+        </label>
+    </script>
+    
+    <ul class="bg-bubbles">
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+    </ul>
+</div>
+  
+  
+
+
+
+
+
+
