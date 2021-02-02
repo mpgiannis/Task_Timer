@@ -1,12 +1,13 @@
 (function() {
     angular.module('TaskTimerModule').controller('WelcomePageController',welcomePageController);
     
-    function welcomePageController($scope, $location, mySerivce) {
+    function welcomePageController($scope, $location, $rootScope) {
         $scope.tasksDescription=[];
   
         $scope.go = function() {
-            mySerivce.setData($scope.tasksDescription);
-           $location.path("/tasks");
+         
+            $rootScope.tasksDes = $scope.tasksDescription;
+            $location.path("/tasks");
 
         }
         

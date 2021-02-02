@@ -1,5 +1,5 @@
 angular.module('TaskTimerModule')
-    .factory('mySerivce', function() {
+    .factory('myService', function() {
            var jsonData;
            return {
                setData: function(data) {
