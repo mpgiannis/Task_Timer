@@ -2,17 +2,17 @@
 <h2 >tasks</h2>
 <!-- <button type="button" ng-click="start()">Start</button> -->
 <div id="canvas-holder">
-  <label class="chart-title">My Chart Title{{timer}}</label>
+  <label class="chart-title">My Chart Title{{timer[3]}}</label>
   <canvas id="doughnut" class="chart chart-doughnut"
     chart-data="data" 
     chart-labels="labels"
     chart-colors="colors"
     chart-options="options"
-    chart-click="clickme"
+  
     chart-hover="hoverme"
     chart-dataset-override="DataSetOverride"  
     >
 </canvas> 
 </div>
 
-<!-- </div> -->  
+<!-- </div> chart-onclick="clickme" -->  
