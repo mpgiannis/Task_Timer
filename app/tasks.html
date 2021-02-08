@@ -1,18 +1,29 @@
-<!-- <div class="wrapper"> -->
-<h2 >tasks</h2>
-<!-- <button type="button" ng-click="start()">Start</button> -->
-<div id="canvas-holder">
-  <label class="chart-title">My Chart Title{{timer[3]}}</label>
-  <canvas id="doughnut" class="chart chart-doughnut"
-    chart-data="data" 
-    chart-labels="labels"
-    chart-colors="colors"
-    chart-options="options"
-  
-    chart-hover="hoverme"
-    chart-dataset-override="DataSetOverride"  
-    >
-</canvas> 
+<div class="wrapper">
+  <div id="canvas-holder">
+    <div class="chart-title">
+      <label >00:00:00</label>
+      <button id="buttonStop" type="button" ng-click="stop()" >Stop</button>
+    </div>
+    <canvas id="doughnut" class="chart chart-doughnut"
+      chart-data="data" 
+      chart-labels="labels"
+      chart-colors="colors"
+      chart-options="options"
+      chart-dataset-override="DataSetOverride">
+    </canvas> 
+  </div>
+     
+  <ul class="bg-bubbles">
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+  </ul>
 </div>
-
-<!-- </div> chart-onclick="clickme" -->  
+<!--  chart-onclick="clickme" -->  

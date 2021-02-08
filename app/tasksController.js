@@ -2,6 +2,24 @@
     angular.module('TaskTimerModule').controller('TasksController',tasksController);
     
     function tasksController($scope, $rootScope, $interval) {
+
+      $scope.stop= function() {
+        alert("stop");
+    }
+      String.prototype.toHHMMSS = function () {
+        var sec_num = parseInt(this, 10); // don't forget the second param
+        var hours   = Math.floor(sec_num / 3600);
+        var minutes = Math.floor((sec_num - (hours * 3600)) / 60);
+        var seconds = sec_num - (hours * 3600) - (minutes * 60);
+    
+        if (hours   < 10) {hours   = "0"+hours;}
+        if (minutes < 10) {minutes = "0"+minutes;}
+        if (seconds < 10) {seconds = "0"+seconds;}
+        return hours + ':' + minutes + ':' + seconds;
+    }
+      $scope.$on('chart-create', function (evt, chart) {
+        $scope.myChart =chart;
+       });
         $scope.timer=[0,0,0,0];  
         var stop;
         $scope.pinakas=["Men", "Women", "Unknown"];
@@ -17,28 +35,24 @@
 
      /*    $scope.PieDataSetOverride = [{ yAxisID: 'y-axis-1' }]; */
 
-        $scope
+       
         $scope.options = {
           onClick: function(e , item) {
-           /*  console.log(e);*/
-            /* console.log(this.chart.canvas); */
             
             var element = this.getElementAtEvent(e);
-           /*  console.log(element); */
            if (element.length) {
-              /*  console.log(element[0]['_chart'].config.data)
-               console.log(element[0])
-               console.log(element[0]['_index']) */
                var task = element[0]['_chart'].config.data.labels[element[0]['_index']];
-              /*  console.log(task) */
             }
             if ( angular.isDefined(stop) ) return;
 
 
             stop = $interval(function() {
               
-              /* console.log(this.pluginTooltips[0]) */
                 $scope.timer[element[0]['_index']] = $scope.timer[element[0]['_index']] + 1;
+                /* $scope.myChart.update(0); */
+                $scope.timer[3]=$scope.timer[3]+1;
+                /* console.log("5700".toHHMMSS()); */
+                $scope.options.tooltips.callbacks.label;
                
                
                 
@@ -48,12 +62,14 @@
             {
               enabled: true,
               callbacks: {
-                label: function(tooltipItem, data) {
-                  /* console.log(tooltipItem) */
+                label: function(tooltipItem, data) 
+                {
                   var label = data.labels[tooltipItem.index];
                   var datasetLabel = data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index];
-                  return label + ': ' /* + datasetLabel */+$scope.timer[tooltipItem.index];
+                  var time =$scope.timer[tooltipItem.index].toString();
+                  return label + ': ' /* + datasetLabel */+time.toHHMMSS();
                 }
+
               }
              
             },
@@ -97,13 +113,56 @@
           
         
         };
-       /*  $scope.$on('chart-create', function (evt, chart) {
-          console.log(chart);
-        }); */
+      
    
         /* $scope.hoverme = function ($event) {
           alert("You hovered over " + $event[0]._view.label);
         }   */
+       
+        Chart.pluginService.register({
+          beforeRender: function (chart) { 
+            if (chart.config.options.showAllTooltips) {
+              // create an array of tooltips
+              // we can't use the chart tooltip because there is only one tooltip per chart
+              chart.pluginTooltips = [];
+              chart.config.data.datasets.forEach(function (dataset, i) {
+                chart.getDatasetMeta(i).data.forEach(function (sector, j) {
+                  chart.pluginTooltips.push(new Chart.Tooltip({
+                    _chart: chart.chart,
+                    _chartInstance: chart,
+                    _data: chart.data,
+                    _options: chart.options.tooltips,
+                    _active: [sector]
+                  }, chart));
+            /*       console.log(chart.pluginTooltips[i]['_chart'].config.data.labels)*/
+                });
+              });
+              // turn off normal tooltips
+              chart.options.tooltips.enabled = false;
+            }
+          },
+          afterDraw: function (chart, easing) {
+            if (chart.config.options.showAllTooltips) {
+              // we don't want the permanent tooltips to animate, so don't do anything till the animation runs atleast once
+              if (!chart.allTooltipsOnce) {
+                if (easing !== 1){
+                  return;}
+                chart.allTooltipsOnce = true;
+              }
+              // turn on tooltips
+              chart.options.tooltips.enabled = true;
+              Chart.helpers.each(chart.pluginTooltips, function (tooltip) {
+                tooltip.initialize();
+                tooltip.update();  
+                // we don't actually need this since we are not animating tooltips
+                tooltip.pivot();
+                tooltip.transition(easing).draw();
+           
+              });
+              chart.options.tooltips.enabled = false;
+            }
+          }
+        })
        
 
       
