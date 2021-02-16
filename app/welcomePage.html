@@ -1,46 +1,30 @@
-<!-- <h2>Welcome</h2>
-<button type="button" ng-click="addTask()" class="btn btn-success btn-xs">Add Task <span class="glyphicon glyphicon-plus"></span></button>
-<p><button type="button" ng-click="go()">Ready!</button></p> -->
-<!-- <p><a href="#!/tasks"><button>Ready!</button></a></p> -->
 <div class="wrapper">
-    <div class="container">
-      <h1>Welcome</h1>
-      
-      <form class="form">
-        <button type="button" id="buttons" ng-click="addForm(0)" >Add Task</button>
-        <div ng-repeat="form in displayedForms track by $index">
-            <ng-include src="form"></ng-include>
-        </div>
-        <!--  <input type="password" placeholder="Password"> -->
-        <button type="submit" id="buttons" ng-click="go()" id="login-button">Ready</button>
-      </form>
 
+    <div class="container">
+      <h1 ng-hide="checked">Welcome {{user}}</h1>
+      <form name="home" class="form">
+        <select id="select" ng-model="packetId" required>
+          <option value="" disabled selected hidden>Select Packet</option>
+          <!--  <option value="none">none</option> -->
+          <option ng-repeat="packet in packets" value="{{packet.id}}"  > {{packet.name}}</option>
+        </select>
+        <button type="button" id="buttons" ng-click="newPacket()">Create Packet</button>
+        <button type="submit" id="buttons" ng-click="go()" id="login-button" ng-disabled="home.$invalid">Ready</button>
+      </form>
     </div>
 
-   
-      
-    <script type="text/ng-template" id="newTaskForm">
-        <p id="labels">
-            <input type="text" id="inputs" ng-model="tasksDescription[$index]" placeholder="Enter Task here" >
-            <!-- <input type="button" id="buttons" value="delete" > <img src='index.jpg' width="35" height="25"  /> -->
-            <button type="button" ng-click="Delete($index)" width="30" height="25" ><img  src='index.jpg'  width="30" height="25"   /> </button>
-          <!--   <button ng-click="Delete($index)" class="btn btn-danger">
-            <i class="glyphicon glyphicon-trash"></i></button> -->
-          </p>
-    </script>
-    
     <ul class="bg-bubbles">
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-      </ul>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+    </ul>
 
     <script>
         $("#login-button").click(function(event){
@@ -51,8 +35,8 @@
         });
     </script>
 
-     
 </div>
+
 
   
 

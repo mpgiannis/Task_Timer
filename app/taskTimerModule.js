@@ -5,6 +5,10 @@ angular
         
         $routeProvider
             .when('/', {
+                templateUrl: 'app/login.html',
+                controller: 'LoginController'
+            })
+            .when('/home', {
                 templateUrl: 'app/welcomePage.html',
                 controller: 'WelcomePageController'
             })
@@ -12,6 +16,16 @@ angular
                 templateUrl: 'app/tasks.html',
                 controller: 'TasksController'
             })
+            .when('/newPacket', {
+                templateUrl: 'app/newPacket.html',
+                controller: 'NewPacketController'
+            })
+            .when('/stats', {
+                templateUrl: 'app/stats.html',
+                controller: 'StatsController'
+            })
+           
+
             .otherwise({redirectTo: '/'});
 
         

@@ -1,8 +1,10 @@
 <div class="wrapper">
+  <div><button id="buttonSave" type="button" ng-click="save()" >Save</button></div>
+  <div><button id="buttonSave" type="button" ng-click="stats()" >Stats</button></div>
   <div id="canvas-holder">
-    <div class="chart-title">
-      <label >00:00:00</label>
-      <button id="buttonStop" type="button" ng-click="stop()" >Stop</button>
+    <div class="chart-timer">
+      <label >{{globalTimer | secondsToDateTime | date:'HH:mm:ss'}}</label>
+      
     </div>
     <canvas id="doughnut" class="chart chart-doughnut"
       chart-data="data" 
@@ -12,7 +14,7 @@
       chart-dataset-override="DataSetOverride">
     </canvas> 
   </div>
-     
+ 
   <ul class="bg-bubbles">
     <li></li>
     <li></li>

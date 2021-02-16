@@ -1,0 +1,32 @@
+<div class="wrapper">
+    <form class="form">
+        <select id="select" 
+                ng-model="selectedPacketId"
+                ng-change="update(selectedPacketId)"
+                ng-options="packet.id as packet.name for packet in packets">
+             <option value="" disabled selected hidden >Select Packet</option>
+        </select>
+    </form>
+    <div id="canvas-holder">
+      <canvas id="pie" class="chart chart-pie"
+        chart-data="data" 
+        chart-labels="labels"
+        chart-colors="colors"
+        chart-options="options"
+        chart-dataset-override="DataSetOverride">
+      </canvas> 
+    </div>
+   
+    <ul class="bg-bubbles">
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+      </ul>
+</div>

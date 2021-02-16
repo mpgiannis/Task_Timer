@@ -83,10 +83,29 @@ form{
   position: relative;
   z-index: 2;
 
+
+  #select{
+   /*  color: white; */
+    display: block;
+    /* appearance: none; */
+    margin: 0 auto 10px auto;
+    text-align: center;
+    width: 250px;
+    cursor: pointer;
+    height: 43px;
+    border: 1px solid fade(white, 40%);
+    border-radius: 3px;
+    color: @prim;
+    font-size: 18px;
+    /* &:hover{
+      background-color: fade(white, 40%);
+    } */
+  }
+
   
   
   #inputs{
-    /* display: block; */
+    display: block;
     appearance: none;
     outline: 0;
     border: 1px solid fade(white, 40%);
@@ -260,38 +279,50 @@ h2 {
   color: black;
 }
 #canvas-holder {
-  height: 100%;
-  width: 100%;
-/*   position: relative; */
-  z-index: 2;
   position: relative;
+  /* top:50%; */
+  z-index: 2;
+ 
 }
 
-.chart-title {
+.chart-timer {
   font-size:250%;
   font-weight: 1900;
-  font-style: oblique;
+  
   color: black;
   position: absolute;
   left: 0;
   right: 0;
   margin: 0 auto;
-  top: 40%;
+  top: 50%;
   transform: translateY(-50%);
   width: 10%;
   text-align: center;
 }
 
-#buttonStop{
-
-  background-color: #51c2a4;
-  padding: 0px;
-  border: none;
-  width: 100px;
-  height: 55px;
+#buttonSave{
+/* height: 55px;*/
+  position: relative;
+  z-index: 3;
+  margin: 0 auto 10px auto;
+  display: block;
+  appearance: none;
+  outline: 0;
+  background-color: white;
+  border: 0;
+  padding: 10px 15px;
+  color: @prim;
+  border-radius: 3px;
+  width: 250px;
   cursor: pointer;
-  &:hover{
-    
-  }
+  font-size: 18px;
+  transition-duration: 0.25s;
   
+  &:hover{
+    background-color: rgb(245, 247, 249);
+  }
+}
+.example{
+
+  display:none;
 }
