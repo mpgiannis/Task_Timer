@@ -12,6 +12,10 @@ angular
                 templateUrl: 'app/welcomePage.html',
                 controller: 'WelcomePageController'
             })
+            .when('/signUp', {
+                templateUrl: 'app/newUser.html',
+                controller: 'NewUserController'
+            })
             .when('/tasks', {
                 templateUrl: 'app/tasks.html',
                 controller: 'TasksController'

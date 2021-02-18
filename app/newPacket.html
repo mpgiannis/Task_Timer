@@ -1,7 +1,7 @@
 <div class="wrapper">
 
     <div class="container">
-      <h1 ng-hide="checked">Welcome</h1>
+      <h1 >Welcome {{ userName }}</h1>
       <form name="user" class="form"> 
         <input type="text" id="inputs" ng-model="packetName" placeholder="Enter Packet Name here" required >
         <button type="button" id="buttons" ng-click="addForm(0)" >Add Task</button>
@@ -13,9 +13,9 @@
     </div>
 
     <script type="text/ng-template" id="newTaskForm">
-        <p id="labels">
-          <input type="text" id="inputs" ng-model="tasksDescription[$index]" placeholder="Enter Task here" >
-          <button type="button" ng-click="Delete($index)" width="30" height="25" ><img  src='index.jpg'  width="30" height="25"   /> </button>
+        <p id="newTasks">
+          <input type="text" id="newInputs" ng-model="tasksDescription[$index]" placeholder="Enter Task here" >
+          <button type="button" ng-click="Delete($index)" width="30" height="25" ><img  src='index.jpg'  width="30" height="25"/> </button>
         </p>
     </script>
     

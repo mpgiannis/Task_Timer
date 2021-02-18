@@ -3,14 +3,13 @@
     
     function newPacketController($scope, $location, $http, $rootScope) {
 
-
-        
+        $scope.userName=localStorage.getItem('name');
         $scope.go = function() {
             $http({
                 method:"POST",
                 url:"./php/insert_packet.php", 
                 data: { "name": $scope.packetName ,
-                        "userId": $rootScope.userId
+                        "userUuid": /* $rootScope.userId */localStorage.getItem('uuid')
                       }   
             }).then(function successCallback(data){
                 $scope.packetId=data.data;

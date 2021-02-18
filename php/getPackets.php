@@ -1,9 +1,9 @@
 <?php
-
+/* if (isset($_COOKIE['TestCookie'])) { */
 include 'config.php';
 
-$param = $_GET['userId'] ;
-$query="SELECT * FROM packet WHERE packet_id IN (SELECT packet_id FROM userspackets where user_id =$param)";
+$param = $_GET['userUuid'] ;
+$query="SELECT * FROM packet WHERE packet_id IN (SELECT packet_id FROM userspackets where user_id IN(select user_id from users where user_uuid ='$param'))";
 $sel = mysqli_query($con,$query);
 $data = array();
 
@@ -12,5 +12,8 @@ $data = array();
 }
  
 echo json_encode($data);
-
+/* }
+else{
+echo json_encode("no loged");
+} */
 

@@ -104,6 +104,7 @@
 
             }
           },
+        maintainAspectRatio: false,
         animation:
           {   
           onComplete: function(animation)

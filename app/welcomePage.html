@@ -1,16 +1,18 @@
 <div class="wrapper">
 
     <div class="container">
-      <h1 ng-hide="checked">Welcome {{user}}</h1>
+      <h1>Welcome {{user}}</h1>
       <form name="home" class="form">
         <select id="select" ng-model="packetId" required>
           <option value="" disabled selected hidden>Select Packet</option>
           <!--  <option value="none">none</option> -->
-          <option ng-repeat="packet in packets" value="{{packet.id}}"  > {{packet.name}}</option>
+          <option ng-repeat="packet in packets track by $index" value="{{packet.id}}"  > {{packet.name}}</option>
         </select>
-        <button type="button" id="buttons" ng-click="newPacket()">Create Packet</button>
         <button type="submit" id="buttons" ng-click="go()" id="login-button" ng-disabled="home.$invalid">Ready</button>
+        <button type="button" id="buttons" ng-click="newPacket()">Create Packet</button>
+        <button type="button" id="buttons" ng-click="logOut()">Log Out</button>
       </form>
+      
     </div>
 
     <ul class="bg-bubbles">
@@ -36,6 +38,8 @@
     </script>
 
 </div>
+
+
 
 
   

@@ -30,7 +30,7 @@
         $http({
             method: 'get',
             url: './php/getPackets.php',
-            params:{userId: $rootScope.user[0].id}
+            params:/* {userId: $rootScope.user[0].id} */{userUuid: localStorage.getItem('uuid')}
         }).then(function successCallback(response) {
             $scope.packets = response.data;
             });
@@ -54,9 +54,11 @@
 
             }
             }, */
+            maintainAspectRatio: false,
             showAllTooltips: true,
             legend: { display: true },
         }
+        
         Chart.pluginService.register({
             beforeRender: function (chart) { 
                 if (chart.config.options.showAllTooltips) {
