@@ -1,0 +1,93 @@
+<md-dialog aria-label="colors" >
+    <form ng-cloak >
+      <md-toolbar> 
+        <div class="md-toolbar-tools" >
+          <h2>Choose {{number}} Colors</h2>
+          <span flex></span>
+         <!--  <md-button class="md-icon-button" ng-click="cancel()">
+            <md-icon md-svg-src="img/icons/ic_close_24px.svg" aria-label="Close dialog"></md-icon>
+          </md-button> -->
+        </div>
+      </md-toolbar>
+      <md-dialog-content style="width: 300px;">
+        <div class="md-dialog-content">
+        
+            <div style="display: inline;" ng-repeat="color in colors track by $index">
+            <label>
+                <input id="checkbox_{{$index}}" type='checkbox' ng-click="select($index)">
+                <span  ng-style="myStyle(color)"></span>
+            </label>
+            </div>
+
+        </div>
+      </md-dialog-content>
+  
+      <md-dialog-actions layout="row">
+        <!-- <md-button href="http://en.wikipedia.org/wiki/Mango" target="_blank" md-autofocus>
+          More on Wikipedia
+        </md-button> -->
+       <!--  <span flex></span> -->
+        <md-button ng-click="answer(true)">
+         Ready
+        </md-button>
+        <md-button ng-click="answer(false)">
+          Defaults
+        </md-button>
+      </md-dialog-actions>
+    </form>
+  </md-dialog>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 
+
+  <label>
+    <input type='checkbox'>
+    <span style="background-color: #A04d4d;"></span>
+</label>
+<label>
+    <input type='checkbox'>
+    <span style="background-color: #d68c5b;"></span>
+</label>
+<label>
+    <input type='checkbox'>
+    <span style="background-color: #413041;"></span>
+</label>
+<label>
+    <input type='checkbox'>
+    <span style="background-color: #7b6888;"></span>
+</label>
+<label>
+    <input type='checkbox'>
+    <span style="background-color: #598f29;"></span>
+</label>
+<label>
+    <input type='checkbox'>
+    <span style="background-color: #ff8c00;"></span>
+</label>
+<label>
+    <input type='checkbox'>
+    <span style="background-color: #d0743c;"></span>
+</label>
+<label>
+    <input type='checkbox'>
+    <span style="background-color: #672d73;"></span>
+</label>
+<label>
+    <input type='checkbox'>
+    <span style="background-color: #d03c3c;"></span>
+</label>
+
+   -->
+  

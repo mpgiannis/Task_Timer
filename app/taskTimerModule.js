@@ -1,5 +1,5 @@
 angular
-    .module('TaskTimerModule', ['ngRoute','chart.js'])
+    .module('TaskTimerModule', ['ngRoute','chart.js','ngMaterial'])
    
     .config(['$routeProvider', function($routeProvider){
         

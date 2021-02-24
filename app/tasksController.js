@@ -7,11 +7,29 @@
       };
       }])
     
-    function tasksController($scope, $interval, $http, $routeParams, $location) {
+    function tasksController($scope, $interval, $http, $routeParams, $location, $rootScope) {
 
       $scope.labels = [];
       $scope.data = [];
       $scope.timer=[];
+      $scope.DefaultColors=['#383a4e', '#A04d4d','#d68c5b', '#413041', '#7b6888', '#598f29', '#ff8c00', '#d0743c','#672d73','#d03c3c'];
+      $scope.DefaultDarkerColors=['#22243a', '#822e2e', '#B66734', '#2d1a2d', '#634d72', '#497521', '#c66d00', '#AF561E','#4e2257','#9e2c2c'];
+      $scope.colors=[];
+      $scope.darkerColors=[];
+      if(angular.isDefined($rootScope.colors)){
+        for(i=0;i<$rootScope.colors.length;i++){
+          if($rootScope.colors[i]){
+            $scope.colors.push($scope.DefaultColors[i]);
+            $scope.darkerColors.push($scope.DefaultDarkerColors[i]);
+            /* $rootScope.colors=undefined; */
+          }
+        }
+      }
+      else{
+        $scope.colors=$scope.DefaultColors;
+        $scope.darkerColors=$scope.DefaultDarkerColors;
+      }
+
 
       $scope.packetId =$routeParams.packet;
       if(angular.isDefined($scope.packetId)){
@@ -22,7 +40,6 @@
          }).then(function successCallback(response) {
           // Store response data
           $scope.pinakas = response.data;
-          console.log($scope.pinakas)
           for (var i=0; i<$scope.pinakas.length; i++){
             $scope.labels.push($scope.pinakas[i].name);
             $scope.data.push(1);
@@ -118,16 +135,16 @@
         tooltipEvents: [],
         showTooltips: true,
         showAllTooltips: true,
-        legend: { display: true },
+        legend: { display: false },
         responsive: true,  // set to false to remove responsiveness. Default responsive value is true.
         
       }
   
       $scope.DataSetOverride = {
-        backgroundColor: ['#383a4e', '#A04d4d', '#ff8c00', '#413041', '#7b6888', '#6b486b', '#d68c5b', '#d0743c'],
-        hoverBackgroundColor: ['#22243a', '#822e2e', '#c66d00', '#2d1a2d', '#634d72', '#533253', '#B66734', '#AF561E'],
-        hoverBorderColor: ['#22243a', '#822e2e', '#c66d00', '#2d1a2d', '#634d72', '#533253', '#B66734', '#AF561E'],
-        hoverBorderWidth:[8,8,8,8,8,8,8,8,8],
+        backgroundColor: $scope.colors,
+        hoverBackgroundColor: $scope.darkerColors,
+        hoverBorderColor: $scope.darkerColors,
+        hoverBorderWidth:[8,8,8,8,8,8,8,8,8,8],
         /* hoverRadius:[4,4,4,4,4,4,4,4]  */
       };
       

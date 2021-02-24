@@ -1,6 +1,6 @@
 (function() {
     angular.module('TaskTimerModule').controller('LoginController',loginController);
-    function loginController($scope, $location, $http, $rootScope) {
+    function loginController($scope, $location, $http, $rootScope, $timeout) {
         $scope.go = function() {
             /* if(angular.isDefined($rootScope.user))
             {
@@ -20,7 +20,8 @@
                         alert("user not found")
                     }
                     else{
-                        console.log(data.data)
+                        $('form').fadeOut(500);
+                        $('.wrapper').addClass('form-success');
                         /* $rootScope.user=data.data; */
                         for (var i=0; i<data.data.length; i++){
                         localStorage.setItem("uuid", data.data[i].uuid);
@@ -28,14 +29,17 @@
                         localStorage.setItem("email", data.data[i].email);
                         }
                         /* localStorage.setItem("name", $rootScope.user[0].name); */
-                        $location.path("/home");/* .search({user: data.data});    */
+                        /* $location.path("/home").search({user: data.data});   */ 
+                        $timeout(function () {
+                            $location.path("/home");
+                        }, 2000);
                     }
                 });
            /*  } */
         }
     
         $scope.signUp = function() {
-            $location.path("/signUp");
+                $location.path("/signUp");
         }
         
     }
